@@ -13,12 +13,12 @@
 #'
 #' @keywords Gaussian, Copula
 #'
-#' @examples out = gaussian_copula(1000, 100, "diag")
+#' @examples out = gaussianCopula(1000, 100, "diag")
 #'
 #'
 #' @export
 
-gaussian_copula <- function(p, n, type = "diag"){
+gaussianCopula <- function(p, n, type = "diag"){
     ## Random correlation matrix
     if(type == "diag"){
         R = diag(p)

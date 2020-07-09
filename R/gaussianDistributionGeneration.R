@@ -1,6 +1,6 @@
-#' Normal Distribution Generation with Copula
+#' Gaussian Distribution Generation with Copula
 #'
-#' Generate normal distribution with provided copula of p features and n samples
+#' Generate gaussian distribution with provided copula of p features and n samples
 #'
 #' @param copula Copula used to generate normal distribution
 #' @param p Number of features
@@ -8,16 +8,16 @@
 #'
 #' @return A list of data, multivariate mean and multivariate standard deviation
 #'
-#' @keywords copula, normal distribution
+#' @keywords copula, gaussian distribution
 #'
 #' @examples
 #'
-#' out_copula = gaussian_copula(p = 100, n = 500, type = "diag")
-#' out_data = normal_distribution_generate(copula = out_copula, p = 100, n = 500)
+#' out_copula = gaussianCopula(p = 100, n = 500, type = "diag")
+#' out_data = gaussianDistributionGeneration(copula = out_copula, p = 100, n = 500)
 #'
 #' @export
 
-normal_distribution_generate <- function(copula, p, n){
+gaussianDistributionGeneration <- function(copula, p, n){
     ## Normal distribution
     mean_list= list()
     sd_list = list()

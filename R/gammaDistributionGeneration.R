@@ -12,12 +12,12 @@
 #'
 #' @examples
 #'
-#' out_copula = gaussian_copula(p = 100, n = 500, type = "diag")
-#' out_data = gamma_distribution_generate(copula = out_copula, p = 100, n = 500)
+#' out_copula = gaussianCopula(p = 100, n = 500, type = "diag")
+#' out_data = gammaDistributionGeneration(copula = out_copula, p = 100, n = 500)
 #'
 #' @export
 
-gamma_distribution_generate <- function(copula, p, n){
+gammaDistributionGeneration <- function(copula, p, n){
     ## Gamma distribution
     shape_list = list()
     rate_list = list()

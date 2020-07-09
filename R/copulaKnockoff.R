@@ -14,13 +14,13 @@
 #' @keywords copula, knockoff
 #'
 #' @examples
-#' out_copula = gaussian_copula(p = 100, n = 500, type = "diag")
-#' out_data = normal_distribution_generate(copula = out_copula, p = 100, n = 500)
-#' out = copula_knockoff(out_data$data.normal)
+#' out_copula = gaussianCopula(p = 100, n = 500, type = "diag")
+#' out_data = gaussianDistributionGeneration(copula = out_copula, p = 100, n = 500)
+#' out = copulaKnockoff(out_data$data.normal)
 #'
 #' @export
 
-copula_knockoff <- function(data.x, R = NULL, marginal_list = NULL){
+copulaKnockoff <- function(data.x, R = NULL, marginal_list = NULL){
     ## Estimate the empirical cumulative distribution
     ecdf.list = list()
     for(i in 1 : ncol(data.x)){

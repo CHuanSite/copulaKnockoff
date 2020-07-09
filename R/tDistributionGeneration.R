@@ -12,12 +12,12 @@
 #'
 #' @examples
 #'
-#' out_copula = gaussian_copula(p = 100, n = 500, type = "diag")
-#' out_data = t_distribution_generate(copula = out_copula, p = 100, n = 500)
+#' out_copula = gaussianCopula(p = 100, n = 500, type = "diag")
+#' out_data = tDistributionGeneration(copula = out_copula, p = 100, n = 500)
 #'
 #' @export
 
-t_distribution_generate <- function(copula, p, n){
+tDistributionGeneration <- function(copula, p, n){
     ## t distribution
     df_list = list()
     for(i in 1 : p){

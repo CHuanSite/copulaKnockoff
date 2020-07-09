@@ -14,13 +14,13 @@
 #' @keywords covariance, gaussian
 #'
 #' @examples
-#' out = gaussian_distribution(100, 50, "unstructure")
-#' out = gaussian_distribution(100, 50, "diagonal")
-#' out = gaussian_distribution(100, 50, "toeplitz")
+#' out = gaussianDistribution(100, 50, "unstructure")
+#' out = gaussianDistribution(100, 50, "diagonal")
+#' out = gaussianDistribution(100, 50, "toeplitz")
 #'
 #' @export
 
-gaussian_distribution <- function(p, n, diag_cov = "unstructure"){
+gaussianDistribution <- function(p, n, diag_cov = "unstructure"){
     if(diag_cov == "diagonal"){
         R = diag(p)
     }else if(diag_cov == "toeplitz"){

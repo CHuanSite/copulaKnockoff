@@ -12,12 +12,12 @@
 #' @keywords lasso, generation
 #'
 #' @examples
-#' out_X = gaussian_distribution(100, 50, "unstructure")
-#' out_Y_Lasso = Lasso_generation_model(out_X$X, 0.5)
+#' out_X = gaussianDistribution(100, 50, "unstructure")
+#' out_Y_Lasso = LassoGenerationModel(out_X$X, 0.5)
 #'
 #' @export
 
-Lasso_generation_model <- function(data_signal, p_freq) {
+LassoGenerationModel <- function(data_signal, p_freq) {
     p = ncol(data_signal)
     p_covariate = runif(ncol(data_signal), 10, 20) * (rbinom(ncol(data_signal), 1, prob = 0.5) - 0.5) * 2
     mask = sample(0 : 1, p, replace = TRUE, prob = c(p_freq, 1 - p_freq))

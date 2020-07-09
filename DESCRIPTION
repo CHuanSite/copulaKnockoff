@@ -10,7 +10,8 @@ Imports: MASS,
     clusterGeneration,
     stats,
     ridge,
-    knockoff
+    knockoff,
+    glmnet
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

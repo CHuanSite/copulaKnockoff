@@ -1,6 +1,6 @@
-#' Knockoff Variable Selection through Ridge while Controlling the FDR
+#' Knockoff Variable Selection through Lasso Regression while Controlling the FDR
 #'
-#' Select variable based on knockoff constructed from Ridge
+#' Select variable based on knockoff constructed from lasso Regression
 #'
 #' @param x Original data
 #' @param x.knockoff knockoff copy of the original data
@@ -9,22 +9,22 @@
 #' @param family what kind of
 #' @param fdr_rate Controlling the False Discovery Rate of the knockoff
 #'
-#' @importFrom ridge linearRidge
+#' @importFrom glmnet cv.glmnet
 #' @importFrom knockoff knockoff.threshold
 #'
-#' @keywords Ridge, knockoff, FDR
+#' @keywords Lasso, knockoff, FDR
 #'
 #' @examples
 #' out_copula = gaussianCopula(p = 100, n = 500, type = "diag")
 #' out_data = gaussianDistributionGeneration(copula = out_copula, p = 100, n = 500)
 #' out = copulaKnockoff(out_data$data.normal)
 #' lasso_out = LassoGenerationModel(data_signal = out_data$data.normal, p_freq = 0.3)
-#' ridgeFDR(x = out_data$data.normal, x.knockoff = out$x.knockoff.copy, y = lasso_out$y)
+#' lassoFDR(x = out_data$data.normal, x.knockoff = out$x.knockoff.copy, y = lasso_out$y, family = "gaussian")
 #'
 #' @export
 
 
-ridgeFDR <- function(x, x.knockoff, y, mask = NULL, family = NULL, fdr_rate = 0.1){
+lassoFDR <- function(x, x.knockoff, y, mask = NULL, family, fdr_rate = 0.1){
     p = ncol(x)
 
     # swap = rbinom(ncol(x), 1, 0.5)
@@ -39,10 +39,10 @@ ridgeFDR <- function(x, x.knockoff, y, mask = NULL, family = NULL, fdr_rate = 0.
 
     X = cbind(x, x.knockoff)
     X = scale(X)
-    # cvfit.knockoff = cv.glmnet(X, y, family = family, alpha = 1)
-    cvfit.knockoff = linearRidge(y ~ X)
-    # W = abs(coef(cvfit.knockoff, s = "lambda.1se")[2 : (p + 1)]) - abs(coef(cvfit.knockoff, s = "lambda.1se")[(p + 2) : (2 * p + 1)])
-    W = abs(coef(cvfit.knockoff)[2 : (p + 1)]) - abs(coef(cvfit.knockoff)[(p + 2) : (2 * p + 1)])
+    cvfit.knockoff = cv.glmnet(X, y, family = family, alpha = 1)
+    # cvfit.knockoff = linearRidge(y ~ X)
+    W = abs(coef(cvfit.knockoff, s = "lambda.1se")[2 : (p + 1)]) - abs(coef(cvfit.knockoff, s = "lambda.1se")[(p + 2) : (2 * p + 1)])
+    # W = abs(coef(cvfit.knockoff)[2 : (p + 1)]) - abs(coef(cvfit.knockoff)[(p + 2) : (2 * p + 1)])
     knockoff_res = knockoff.threshold(W, fdr = fdr_rate, offset = 1)
     selected_x = which(W >= knockoff_res)
     if(is.null(mask)){
