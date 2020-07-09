@@ -5,12 +5,14 @@
 #' @param data_signal The covariate used to generate the data
 #' @param p_freq The percentage of covariates that are set to be 0
 #'
+#' @import stats
+#'
 #' @return A list containing the data, covariant, the mask and p_freq
 #'
 #' @keywords lasso, generation
 #'
 #' @examples
-#' out_X = gaussian_distribution(100, 50, "unstructure)
+#' out_X = gaussian_distribution(100, 50, "unstructure")
 #' out_Y_Lasso = Lasso_generation_model(out_X$X, 0.5)
 #'
 #' @export

@@ -14,9 +14,9 @@
 #' @keywords covariance, gaussian
 #'
 #' @examples
-#' out = gaussian_distribution(100, 50, "unstructure)
-#' out = gaussian_distribution(100, 50, "diagonal)
-#' out = gaussian_distribution(100, 50, "toeplitz)
+#' out = gaussian_distribution(100, 50, "unstructure")
+#' out = gaussian_distribution(100, 50, "diagonal")
+#' out = gaussian_distribution(100, 50, "toeplitz")
 #'
 #' @export
 

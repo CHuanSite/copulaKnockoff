@@ -6,6 +6,9 @@
 #' @param R correlation matrix, can be provided, default value is NULL, where the algorithm will estimate it
 #' @param marginal_list marginal list, containing mean and standard deviation
 #'
+#' @import stats
+#' @importFrom knockoff create.gaussian
+#'
 #' @return A list of correlation and constructed knockoff
 #'
 #' @keywords copula, knockoff
@@ -13,7 +16,7 @@
 #' @examples
 #' out_copula = gaussian_copula(p = 100, n = 500, type = "diag")
 #' out_data = normal_distribution_generate(copula = out_copula, p = 100, n = 500)
-#' out = copula_knockoff(out_data)
+#' out = copula_knockoff(out_data$data.normal)
 #'
 #' @export
 

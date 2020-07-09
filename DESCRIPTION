@@ -6,6 +6,12 @@ Author: Huan Chen
 Maintainer: Huan Chen <hchen130@jhu.edu>
 Description: The copulaKnockoff is an implementation of the Gaussian copula for the knockoff, where it achieves the 
     variable selection while controlling the False Discovery Rate.
-License: MIT
+Imports: MASS,
+    clusterGeneration,
+    stats,
+    ridge,
+    knockoff
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.1.0

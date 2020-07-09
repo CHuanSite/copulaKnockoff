@@ -4,7 +4,7 @@
 #'
 #' @param p Dimension of the covariance
 #' @param n Number of samples
-#' @param diag_cov Structure of the covariance matrix
+#' @param type Structure of the covariance matrix, has option "diag", "toeplitz" and "unstructured"
 #'
 #' @importFrom clusterGeneration rcorrmatrix
 #' @importFrom MASS mvrnorm
@@ -13,7 +13,7 @@
 #'
 #' @keywords Gaussian, Copula
 #'
-#' @examples out = gaussian_copula(1000, 100, "diag)
+#' @examples out = gaussian_copula(1000, 100, "diag")
 #'
 #'
 #' @export

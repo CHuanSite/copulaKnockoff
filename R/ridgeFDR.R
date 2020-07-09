@@ -1,6 +1,6 @@
-#' Knockoff Variable Selection through Lasso while Controlling the FDR
+#' Knockoff Variable Selection through Ridge while Controlling the FDR
 #'
-#' Select variable based on knockoff constructed from LASSO
+#' Select variable based on knockoff constructed from Ridge
 #'
 #' @param x Original data
 #' @param x.knockoff knockoff copy of the original data
@@ -9,21 +9,22 @@
 #' @param family what kind of
 #' @param fdr_rate Controlling the False Discovery Rate of the knockoff
 #'
-#' @keywords Lasso, knockoff,FDR
+#' @importFrom ridge linearRidge
+#' @importFrom knockoff knockoff.threshold
+#'
+#' @keywords Ridge, knockoff, FDR
 #'
 #' @examples
 #' out_copula = gaussian_copula(p = 100, n = 500, type = "diag")
 #' out_data = normal_distribution_generate(copula = out_copula, p = 100, n = 500)
-#' out = copula_knockoff(out_data)
-#' lasso_out = Lasso_generation_model(data_signal = out_data, p_freq = 0.3)
-#' lasso_fdr(x = out_data, x.knockoff = out$x.knockoff.copy, y = lasso_out$y)
+#' out = copula_knockoff(out_data$data.normal)
+#' lasso_out = Lasso_generation_model(data_signal = out_data$data.normal, p_freq = 0.3)
+#' ridgeFDR(x = out_data$data.normal, x.knockoff = out$x.knockoff.copy, y = lasso_out$y)
 #'
 #' @export
 
 
-
-
-lasso_fdr <- function(x, x.knockoff, y, mask = NULL, family = NULL, fdr_rate = 0.1){
+ridgeFDR <- function(x, x.knockoff, y, mask = NULL, family = NULL, fdr_rate = 0.1){
     p = ncol(x)
 
     # swap = rbinom(ncol(x), 1, 0.5)
