@@ -17,12 +17,11 @@
 #' @examples
 #' out_copula = gaussianCopula(p = 100, n = 500, type = "diag")
 #' out_data = gaussianDistributionGeneration(copula = out_copula, p = 100, n = 500)
-#' out = copulaKnockoff(out_data$data.normal)
-#' lasso_out = LassoGenerationModel(data_signal = out_data$data.normal, p_freq = 0.3)
-#' ridgeFDR(x = out_data$data.normal, x.knockoff = out$x.knockoff.copy, y = lasso_out$y)
+#' out = copulaKnockoff(out_data$data)
+#' lasso_out = LassoGenerationModel(data_signal = out_data$data, p_freq = 0.3)
+#' ridgeFDR(x = out_data$data, x.knockoff = out$x.knockoff.copy, y = lasso_out$y)
 #'
 #' @export
-
 
 ridgeFDR <- function(x, x.knockoff, y, mask = NULL, family = NULL, fdr_rate = 0.1){
     p = ncol(x)

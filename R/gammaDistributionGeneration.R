@@ -25,10 +25,10 @@ gammaDistributionGeneration <- function(copula, p, n){
         rate_list[[i]] = sample(2:10, 1)
         shape_list[[i]] = sample(2:10, 1)
     }
-    data.gamma = c()
+    data = c()
     for(i in 1 : p){
-        data.gamma = cbind(data.gamma, unlist(lapply(copula$U[, i], function(x){qgamma(x, shape = shape_list[[i]], rate = rate_list[[i]])})))
+        data = cbind(data, unlist(lapply(copula$U[, i], function(x){qgamma(x, shape = shape_list[[i]], rate = rate_list[[i]])})))
     }
 
-    return(list(data.gamma = data.gamma, rate_list = rate_list, shape_list = shape_list))
+    return(list(data = data, rate_list = rate_list, shape_list = shape_list))
 }

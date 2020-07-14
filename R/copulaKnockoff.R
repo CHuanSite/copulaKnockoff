@@ -16,7 +16,7 @@
 #' @examples
 #' out_copula = gaussianCopula(p = 100, n = 500, type = "diag")
 #' out_data = gaussianDistributionGeneration(copula = out_copula, p = 100, n = 500)
-#' out = copulaKnockoff(out_data$data.normal)
+#' out = copulaKnockoff(out_data$data)
 #'
 #' @export
 

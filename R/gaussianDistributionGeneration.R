@@ -25,9 +25,9 @@ gaussianDistributionGeneration <- function(copula, p, n){
         mean_list[[i]] = rnorm(1)
         sd_list[[i]] = rgamma(n = 1, shape = 2)
     }
-    data.normal = c()
+    data = c()
     for(i in 1 : p){
-        data.normal = cbind(data.normal, unlist(lapply(copula$U[, i], function(x){qnorm(x, mean = mean_list[[i]], sd = sd_list[[i]])})))
+        data = cbind(data, unlist(lapply(copula$U[, i], function(x){qnorm(x, mean = mean_list[[i]], sd = sd_list[[i]])})))
     }
-    return(list(data.normal = data.normal, mean_list = mean_list, sd_list = sd_list))
+    return(list(data = data, mean_list = mean_list, sd_list = sd_list))
 }

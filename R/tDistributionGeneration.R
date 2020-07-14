@@ -23,9 +23,9 @@ tDistributionGeneration <- function(copula, p, n){
     for(i in 1 : p){
         df_list[[i]] = sample(5 : 20, 1)
     }
-    data.t = c()
+    data = c()
     for(i in 1 : p){
-        data.t = cbind(data.t, unlist(lapply(copula$U[, i], function(x){qt(x, df_list[[i]])})))
+        data = cbind(data, unlist(lapply(copula$U[, i], function(x){qt(x, df_list[[i]])})))
     }
-    return(list(data.t = data.t, df_list = df_list))
+    return(list(data = data, df_list = df_list))
 }

@@ -25,9 +25,9 @@ Select variable based on knockoff constructed from lasso Regression
 \examples{
 out_copula = gaussianCopula(p = 100, n = 500, type = "diag")
 out_data = gaussianDistributionGeneration(copula = out_copula, p = 100, n = 500)
-out = copulaKnockoff(out_data$data.normal)
-lasso_out = LassoGenerationModel(data_signal = out_data$data.normal, p_freq = 0.3)
-lassoFDR(x = out_data$data.normal, x.knockoff = out$x.knockoff.copy, y = lasso_out$y, family = "gaussian")
+out = copulaKnockoff(out_data$data)
+lasso_out = LassoGenerationModel(data_signal = out_data$data, p_freq = 0.3)
+lassoFDR(x = out_data$data, x.knockoff = out$x.knockoff.copy, y = lasso_out$y, family = "gaussian")
 
 }
 \keyword{FDR}
