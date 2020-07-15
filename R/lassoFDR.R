@@ -8,6 +8,7 @@
 #' @param mask The variables that are masked from the purpose
 #' @param family what kind of
 #' @param fdr_rate Controlling the False Discovery Rate of the knockoff
+#' @param offset Offset for the knock.thershold, either 0 or 1, default is 0
 #'
 #' @importFrom glmnet cv.glmnet
 #' @importFrom knockoff knockoff.threshold
@@ -24,7 +25,7 @@
 #' @export
 
 
-lassoFDR <- function(x, x.knockoff, y, mask = NULL, family, fdr_rate = 0.1){
+lassoFDR <- function(x, x.knockoff, y, mask = NULL, family, offset = 0, fdr_rate = 0.1){
     p = ncol(x)
 
     # swap = rbinom(ncol(x), 1, 0.5)
@@ -43,7 +44,7 @@ lassoFDR <- function(x, x.knockoff, y, mask = NULL, family, fdr_rate = 0.1){
     # cvfit.knockoff = linearRidge(y ~ X)
     W = abs(coef(cvfit.knockoff, s = "lambda.1se")[2 : (p + 1)]) - abs(coef(cvfit.knockoff, s = "lambda.1se")[(p + 2) : (2 * p + 1)])
     # W = abs(coef(cvfit.knockoff)[2 : (p + 1)]) - abs(coef(cvfit.knockoff)[(p + 2) : (2 * p + 1)])
-    knockoff_res = knockoff.threshold(W, fdr = fdr_rate, offset = 1)
+    knockoff_res = knockoff.threshold(W, fdr = fdr_rate, offset = offset)
     selected_x = which(W >= knockoff_res)
     if(is.null(mask)){
         ## If no mask, then just return the selected covariate

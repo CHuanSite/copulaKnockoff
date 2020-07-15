@@ -4,7 +4,7 @@
 \alias{lassoFDR}
 \title{Knockoff Variable Selection through Lasso Regression while Controlling the FDR}
 \usage{
-lassoFDR(x, x.knockoff, y, mask = NULL, family, fdr_rate = 0.1)
+lassoFDR(x, x.knockoff, y, mask = NULL, family, offset = 0, fdr_rate = 0.1)
 }
 \arguments{
 \item{x}{Original data}
@@ -16,6 +16,8 @@ lassoFDR(x, x.knockoff, y, mask = NULL, family, fdr_rate = 0.1)
 \item{mask}{The variables that are masked from the purpose}
 
 \item{family}{what kind of}
+
+\item{offset}{Offset for the knock.thershold, either 0 or 1, default is 0}
 
 \item{fdr_rate}{Controlling the False Discovery Rate of the knockoff}
 }
