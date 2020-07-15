@@ -4,6 +4,8 @@
 #'
 #' @param data_signal The covariate used to generate the data
 #' @param p_freq The percentage of covariates that are set to be 0
+#' @param signal_low_significant The lower bound on the signal significance, default value is set to be 3
+#' @param signal_high_significant The higher bound on the signal significance, default value is set to be 5
 #'
 #' @import stats
 #'
@@ -17,9 +19,9 @@
 #'
 #' @export
 
-LassoGenerationModel <- function(data_signal, p_freq) {
+LassoGenerationModel <- function(data_signal, p_freq, signal_low_significant = 3, signal_high_significant = 5) {
     p = ncol(data_signal)
-    p_covariate = runif(ncol(data_signal), 10, 20) * (rbinom(ncol(data_signal), 1, prob = 0.5) - 0.5) * 2
+    p_covariate = runif(ncol(data_signal), signal_low_significant, signal_high_significant) * (rbinom(ncol(data_signal), 1, prob = 0.5) - 0.5) * 2
     mask = sample(0 : 1, p, replace = TRUE, prob = c(p_freq, 1 - p_freq))
     p_covariate[which(mask == 1)] = 0
     y = data_signal %*% p_covariate + matrix(rnorm(nrow(data_signal)), ncol = 1)

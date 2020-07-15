@@ -25,7 +25,7 @@ for(k in 1 : 3){
         set.seed(1001)
         ## generate knockoff copies
         gaussian.knockoff = copulaKnockoff(gaussian.list$data)
-        t.knockoff = copulaKnockoff(t.list$data.t)
+        t.knockoff = copulaKnockoff(t.list$data)
         gamma.knockoff = copulaKnockoff(gamma.list$data)
 
         set.seed(1001)

@@ -4,12 +4,21 @@
 \alias{LassoGenerationModel}
 \title{Data Generation with Lasso Model}
 \usage{
-LassoGenerationModel(data_signal, p_freq)
+LassoGenerationModel(
+  data_signal,
+  p_freq,
+  signal_low_significant = 3,
+  signal_high_significant = 5
+)
 }
 \arguments{
 \item{data_signal}{The covariate used to generate the data}
 
 \item{p_freq}{The percentage of covariates that are set to be 0}
+
+\item{signal_low_significant}{The lower bound on the signal significance, default value is set to be 3}
+
+\item{signal_high_significant}{The higher bound on the signal significance, default value is set to be 5}
 }
 \value{
 A list containing the data, covariant, the mask and p_freq
