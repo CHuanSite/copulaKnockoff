@@ -1,6 +1,6 @@
 #' Truncated Gaussian knockoff
 #'
-#' Construct Gaussian knockoff by truncating the diagonal variable
+#' Construct Gaussian knockoff by truncating the diagonal variables
 #'
 #' @param x original data
 #' @param Sigma covariance matrix of the original X
