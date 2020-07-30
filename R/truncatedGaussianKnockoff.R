@@ -6,25 +6,26 @@
 #' @param Sigma covariance matrix of the original X
 #' @param amp The amplitude of the gaussian copula, default value is set to 1, upper limit is 2.
 #'
-#' @import stats
-#'
 #' @return knockoff generated
+#'
+#' @importFrom mvtnorm rmvnorm
 #'
 #' @keywords truncated, knockoff
 #'
 #' @examples
+#'
+#' library(mvtnorm)
 #' p = 20
 #' n = 100
 #' u = eigen(cov(matrix(rnorm(p * n), nrow = n)))$vectors
 #' d = runif(p, 1, 10)
 #' Sigma = u %*% diag(d) %*% t(u)
 #' x = rmvnorm(n, rep(0, p), Sigma)
-#' tgk = truncated.gaussian.knockoff(x, Sigma, 1)
-#'
+#' truncatedGaussianKnockoff(x, Sigma, 1)
 #' @export
 
 
-truncated.gaussian.knockoff <- function(x, Sigma, amp = 1){
+truncatedGaussianKnockoff <- function(x, Sigma, amp = 1){
     p = nrow(Sigma)
     s = eigen(Sigma)$values[p] * amp
     A = 2 * diag(s, nrow = p) - diag(s, nrow = p) %*% solve(Sigma) %*% diag(s, nrow = p)
