@@ -27,10 +27,12 @@
 
 truncatedGaussianKnockoff <- function(x, Sigma, amp = 1){
     p = nrow(Sigma)
-    s = eigen(Sigma)$values[p] * amp
+    n = nrow(x)
+    s = eigen(Sigma, symmetric = TRUE)$values[p] * amp
     A = 2 * diag(s, nrow = p) - diag(s, nrow = p) %*% solve(Sigma) %*% diag(s, nrow = p)
     C = chol(A)
-    U = eigen(svd(x)$u %*% t(svd(x)$u))$vectors[, (p + 1) : (2 * p)]
+    # U = eigen(svd(x)$u %*% t(svd(x)$u))$vectors[, (p + 1) : (2 * p)]
+    U = svd((diag(n) - svd(x)$u %*% t(svd(x)$u)) %*% matrix(rnorm(nrow(x) * nrow(x)), nrow(x)))$u[, 1 : p]
     xHat = x %*% (diag(p) - solve(Sigma) %*% diag(s, nrow = p)) + U %*% C
     return(xHat)
 }
